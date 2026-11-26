@@ -1,0 +1,7 @@
+Let's try to complete the pattern:
+
+{examples}
+
+input {query_number}: {test_input}
+
+output {query_number}:

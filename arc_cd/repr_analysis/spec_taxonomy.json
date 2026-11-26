@@ -1,0 +1,1385 @@
+{
+  "schema_version": 1,
+  "version": "1.11.0",
+  "description": "Task-level layout, selector, and action families with traceable DSL evidence. Action concepts retain their declared whole-transformation labels; predicate tasks retain contextual operation families.",
+  "reference": {
+    "project": "ConceptARC-GEN",
+    "files": [
+      "conceptarc_gen/dsl_actions.py",
+      "conceptarc_gen/dsl_selectors.py",
+      "conceptarc_gen/dsl_layouts.py",
+      "conceptarc_gen/dsl_shape_instances.py",
+      "conceptarc_gen/dsl_scene.py",
+      "conceptarc_gen/dsl_patterns.py",
+      "conceptarc_gen/dsl_footprints.py",
+      "conceptarc_gen/dsl_measurements.py",
+      "conceptarc_gen/dsl_sequence_layouts.py"
+    ],
+    "notes": "Mappings reviewed against DSL definitions and all 1,600 predicate/action parent specs. The eight declared action concepts determine task-level action families through concept_action_families; predicate tasks retain contextual whole-transformation families, including combined effects and fill-state inversion. Exact operations, parameters, and local mapping evidence remain provenance. secondary_action_families records implementation details of the two simplified predicate operations without adding task-level memberships. Conditional execution is structural metadata excluded from action comparisons; branch actions describe declared alternatives, not simultaneous execution. Parameter rules use exact operator/path/value matches, and composition rules use reviewed canvas, placement, and rendering semantics with documented defaults. Selections can contain inferred content, so preserved placement does not prove literal duplication of observed pixels. Frozen taxonomies retain their own rules and annotations."
+  },
+  "families": {
+    "layout": {
+      "scattered_objects": {
+        "label": "Scattered objects",
+        "description": "Several separated objects or lines distributed over a canvas.",
+        "operations": [
+          "scattered_objects",
+          "scattered_lines"
+        ]
+      },
+      "aligned_objects": {
+        "label": "Aligned objects",
+        "description": "Objects arranged in aligned, stacked, or repeated configurations; a generic pair is not assumed to be axis-aligned.",
+        "operations": [
+          "gapped_aligned_objects",
+          "corner_stacked_objects",
+          "aligned_repeated_objects",
+          "collinear_pair_with_marker",
+          "polygon_outline_sequence"
+        ]
+      },
+      "attachment": {
+        "label": "Attached objects",
+        "description": "Objects connected or attached to reference objects.",
+        "operations": [
+          "objects_attached_to_references",
+          "cardinally_attached_objects"
+        ]
+      },
+      "lines_paths": {
+        "label": "Lines and paths",
+        "description": "Explicit line, bar, strip, stroke, or path structures; other tags preserve their spatial context.",
+        "operations": [
+          "line_boundary",
+          "scattered_lines",
+          "banded_regions_with_path",
+          "marked_line_runs",
+          "dashed_line_with_marker",
+          "collinear_pair_with_marker",
+          "projected_line_with_markers",
+          "interrupted_paths_with_axis_reference",
+          "line_pair_to_touch",
+          "shape_with_parallel_end_lines",
+          "parallel_lines_with_marker",
+          "line_with_marker",
+          "parallel_bars_with_mixed_depth",
+          "parallel_lines_with_dots",
+          "line_with_endpoint_marker",
+          "endpoint_marked_lines",
+          "parallel_strips_with_fill_states",
+          "oriented_line_segments",
+          "outlined_regions_with_line_objects",
+          "striped_grid_with_overlaid_rectangle",
+          "oriented_sparse_pattern",
+          "parallel_lines_with_inside_outside_objects",
+          "frame_crossed_by_line",
+          "barred_rectangle_with_overlapping_object",
+          "intersecting_lines_with_mixed_depth",
+          "axis_reference_with_objects",
+          "edge_reference_with_objects",
+          "perpendicular_dashed_lines",
+          "intersecting_edge_lines_with_scattered_cells",
+          "triangular_wave_with_scattered_cells"
+        ]
+      },
+      "containers_boundaries": {
+        "label": "Containers and boundaries",
+        "description": "Enclosures, outlines, boundaries, or regions with a distinguished inside, outside, or boundary.",
+        "operations": [
+          "line_boundary",
+          "nested_containers_with_inside_outside_objects",
+          "irregular_outline_with_dots",
+          "concave_region_with_dots",
+          "hollow_container_with_inside_outside_objects",
+          "hollow_object_with_distractors",
+          "opposite_rectangle_sides",
+          "single_hollow_object",
+          "center_object_in_frame",
+          "enclosure_with_inner_object",
+          "rectangular_outline_with_missing_cells",
+          "sparse_outline_with_marker",
+          "container_with_region_cells",
+          "container_with_contained_objects",
+          "nested_containers_with_marker",
+          "patterned_containers_with_completion_states",
+          "open_containers_with_fill_states",
+          "uniform_interior_containers_with_fill_states",
+          "hollow_objects",
+          "outlined_regions_with_line_objects",
+          "parallel_lines_with_inside_outside_objects",
+          "outlined_regions_with_dots",
+          "concave_region_with_inside_outside_objects",
+          "irregular_outline_with_inside_outside_objects",
+          "frame_crossed_by_line",
+          "shape_with_region_cells",
+          "container_with_external_copy_source",
+          "container_with_uniform_interior",
+          "single_polygon_outline",
+          "hollow_rectangles_with_scattered_cells",
+          "hollow_squares_with_scattered_cells",
+          "nested_color_layers",
+          "uniform_field_with_enclosed_regions",
+          "repeated_hollow_objects_with_overlaid_object"
+        ]
+      },
+      "panels": {
+        "label": "Panels",
+        "description": "Scenes partitioned into explicit panels, with per-panel content or comparison structure.",
+        "operations": [
+          "separator_delimited_panels",
+          "marker_decorated_panels"
+        ]
+      },
+      "color_bands": {
+        "label": "Color bands and stripes",
+        "description": "Spatial color bands or periodic stripes, including bands crossed by paths and stripes under overlaid shapes.",
+        "operations": [
+          "banded_regions_with_path",
+          "single_color_banded_region",
+          "separated_color_banded_regions",
+          "striped_grid_with_overlaid_rectangle",
+          "striped_grid_with_scattered_cells"
+        ]
+      },
+      "overlap_occlusion": {
+        "label": "Overlap and occlusion",
+        "description": "Layouts requiring or allowing overlap, crossings, or occlusion. Optional overlap is recorded as possible rather than guaranteed; configurations that forbid overlap are excluded.",
+        "operations": [
+          "layered_objects",
+          "objects_occluded_by_rectangles",
+          "parallel_bars_with_mixed_depth",
+          "grouped_overlapping_rectangles",
+          "barred_rectangle_with_overlapping_object",
+          "intersecting_lines_with_mixed_depth",
+          "striped_grid_with_overlaid_rectangle",
+          "periodic_pattern_with_overlaid_object",
+          "solid_rectangle_with_overlaid_object",
+          "repeated_hollow_objects_with_overlaid_object",
+          "repeated_objects_with_occluding_rectangles"
+        ]
+      },
+      "symmetry": {
+        "label": "Symmetric structure",
+        "description": "Explicitly symmetric objects or arrangements, including symmetric structures with missing cells. Markers or missing cells need not preserve symmetry of the entire visible grid.",
+        "operations": [
+          "symmetric_objects_with_marker",
+          "symmetric_pattern_with_missing_cells"
+        ]
+      },
+      "centering": {
+        "label": "Center-based layouts",
+        "description": "A distinguished centered or off-center object, center marker, or reference frame. Does not imply symmetry.",
+        "operations": [
+          "central_object_with_distractors",
+          "template_objects_with_center_markers",
+          "offset_center_bearing_object",
+          "center_object_in_frame",
+          "off_center_object_with_marker"
+        ]
+      },
+      "fill_completion": {
+        "label": "Fill states and missing parts",
+        "description": "Layouts explicitly organized by fill/completion state or missing geometry. Includes declared mixed filled/hollow states in generic scene generators; does not imply a filling action.",
+        "operations": [
+          "patterned_containers_with_completion_states",
+          "parallel_strips_with_fill_states",
+          "open_containers_with_fill_states",
+          "uniform_interior_containers_with_fill_states",
+          "congruent_shapes_with_fill_states",
+          "objects_with_fill_states",
+          "single_shape_with_fill_state",
+          "symmetric_pattern_with_missing_cells",
+          "rectangular_outline_with_missing_cells",
+          "corner_missing_rectangles",
+          "partial_solid_rectangles",
+          "scattered_rectangle_evidence",
+          "regular_shape_with_local_defects",
+          "template_with_partial_copies",
+          "translated_pattern_with_partial_copy",
+          "paired_objects_with_missing_part",
+          "matching_objects_with_missing_context",
+          "perpendicular_dashed_lines"
+        ]
+      },
+      "references_markers": {
+        "label": "Reference objects and markers",
+        "description": "Layouts with explicitly distinguished markers or reference objects; not a claim about the selector used.",
+        "operations": [
+          "axis_reference_with_objects",
+          "reference_object_with_objects",
+          "symmetric_objects_with_marker",
+          "central_object_with_distractors",
+          "dashed_line_with_marker",
+          "collinear_pair_with_marker",
+          "projected_line_with_markers",
+          "markers_with_obstacle",
+          "interrupted_paths_with_axis_reference",
+          "template_objects_with_center_markers",
+          "parallel_lines_with_marker",
+          "large_object_with_marker",
+          "line_with_marker",
+          "edge_reference_with_objects",
+          "sparse_outline_with_marker",
+          "line_with_endpoint_marker",
+          "single_marker",
+          "nested_containers_with_marker",
+          "off_center_object_with_marker",
+          "endpoint_marked_lines",
+          "marked_line_runs",
+          "shape_with_region_cells",
+          "container_with_external_copy_source",
+          "diagonal_markers_with_obstacle",
+          "pattern_with_copy_markers",
+          "pattern_with_repetition_marker_run",
+          "template_with_partial_copies",
+          "marker_decorated_panels"
+        ]
+      },
+      "packed_objects": {
+        "label": "Packed objects",
+        "description": "Compact scenes of dense objects from one geometric family; kept distinct from scattered layouts.",
+        "operations": [
+          "packed_same_family_objects"
+        ]
+      },
+      "paired_objects": {
+        "label": "Paired objects",
+        "description": "An explicit object pair, including a declared two-object scene or two semantic layers. Alignment, touching, and overlap remain separate properties; object counts are interpreted using generator-specific parameter precedence.",
+        "operations": [
+          "paired_objects",
+          "collinear_pair_with_marker",
+          "line_pair_to_touch",
+          "paired_objects_with_pattern",
+          "paired_objects_with_missing_part",
+          "translated_pattern_with_partial_copy"
+        ]
+      },
+      "row_level_structure": {
+        "label": "Tiered shapes",
+        "description": "Shapes constructed from countable horizontal levels, including pyramid, side, separated, and sparse-side styles. Neither symmetry nor centering is guaranteed.",
+        "operations": [
+          "row_level_shape"
+        ]
+      },
+      "corrupted_surfaces": {
+        "label": "Surfaces with cell corruptions",
+        "description": "A uniform field or solid rectangle with scattered cell corruptions. Rectangle presence and corruption region remain explicit parameters; this does not imply occlusion or completion.",
+        "operations": [
+          "solid_rectangle_with_scattered_cells"
+        ]
+      },
+      "background_noise": {
+        "label": "Object with background noise",
+        "description": "An object rendered with colored noise cells in its surrounding background. Corruption confined to the background does not imply damage to the object.",
+        "operations": []
+      },
+      "repeated_patterns": {
+        "label": "Repeated patterns and templates",
+        "description": "Explicitly repeated patterns, template/copy structures, or regular backgrounds. Missing parts, overlays, and reference markers retain separate tags. This describes the input and does not imply a copying action.",
+        "operations": [
+          "template_with_partial_copies",
+          "translated_pattern_with_partial_copy",
+          "periodic_pattern_with_overlaid_object",
+          "repeated_hollow_objects_with_overlaid_object",
+          "repeated_objects_with_occluding_rectangles",
+          "uniform_field_with_repeated_multicolor_pattern"
+        ]
+      },
+      "pattern_corruption": {
+        "label": "Patterns with scattered cell noise",
+        "description": "Declared shape or pattern generators with scattered cell corruptions. Noise can occur in the background or within a structure; this tag does not assert that the objects themselves are damaged. Regions and noise counts remain explicit.",
+        "operations": [
+          "diagonal_shapes_with_scattered_cells",
+          "equal_square_objects_with_scattered_cells",
+          "filled_triangles_with_scattered_cells",
+          "hollow_rectangles_with_scattered_cells",
+          "hollow_squares_with_scattered_cells",
+          "intersecting_edge_lines_with_scattered_cells",
+          "solid_rectangles_with_scattered_cells",
+          "striped_grid_with_scattered_cells",
+          "triangular_wave_with_scattered_cells"
+        ]
+      },
+      "directional_shapes": {
+        "label": "Directional shapes",
+        "description": "Connected shapes whose geometry provides a cardinal-direction cue; no movement or extension action is implied.",
+        "operations": [
+          "directional_objects"
+        ]
+      }
+    },
+    "selector": {
+      "spatial_relations": {
+        "label": "Position and distance",
+        "description": "Selection by absolute/relative position, proximity, separation, or position relative to a center; positional extrema also retain the min/max tag.",
+        "operations": [
+          "cells_relative_to_reference",
+          "objects_relative_to_reference",
+          "object_reference_pairs",
+          "object_reference_pair_members",
+          "nearest_object",
+          "objects_between_pair",
+          "axis_separated_objects",
+          "most_separated_parallel_lines",
+          "extreme_object_by_position",
+          "object_extreme_cells",
+          "central_object",
+          "off_center_marker",
+          "marker_off_dashed_line",
+          "marker_cells_off_projected_line",
+          "line_to_extend_to_touch",
+          "unique_interior_color_object"
+        ]
+      },
+      "extrema": {
+        "label": "Min/max selection",
+        "description": "Selection through a minimum or maximum of position, size, distance, extent, or color frequency. The measured criterion is retained through overlapping families and exact parameters.",
+        "operations": [
+          "extreme_object_by_position",
+          "object_extreme_cells",
+          "extreme",
+          "largest_object",
+          "largest_line",
+          "largest_container_object",
+          "smallest_container_object",
+          "smallest_marker",
+          "spanning_line",
+          "most_separated_parallel_lines",
+          "nearest_object",
+          "dominant_color_objects",
+          "least_edge_color_objects",
+          "matching_template_objects",
+          "extreme_object_by_key",
+          "largest_container_relative_object",
+          "largest_marked_line_object"
+        ]
+      },
+      "size": {
+        "label": "Size and extent",
+        "description": "Selection by object/container size, bounding dimensions, or line extent; equivalence-class counts are not physical object sizes.",
+        "operations": [
+          "largest_object",
+          "largest_line",
+          "largest_container_object",
+          "smallest_container_object",
+          "smallest_marker",
+          "spanning_line",
+          "matching_template_objects",
+          "objects_by_area",
+          "singleton_marker_cells",
+          "largest_container_relative_object",
+          "largest_marked_line_object"
+        ]
+      },
+      "orientation": {
+        "label": "Orientation",
+        "description": "Selection based on orientation or aspect.",
+        "operations": [
+          "objects_by_orientation",
+          "oriented_color_band_cells",
+          "shape_instances_by_orientation",
+          "most_separated_parallel_lines",
+          "objects_by_aspect",
+          "oriented_color_band_objects"
+        ]
+      },
+      "containment": {
+        "label": "Containment",
+        "description": "Selection involving inside/outside, containers, enclosed regions, or clipping regions.",
+        "operations": [
+          "inside_container_objects",
+          "outside_container_objects",
+          "outside_region_objects",
+          "contained_objects",
+          "container_objects",
+          "largest_container_object",
+          "smallest_container_object",
+          "enclosed_composite_objects",
+          "largest_container_relative_object",
+          "cells_in_container_region",
+          "container_region_patch",
+          "container_region_cells",
+          "monochrome_enclosed_regions",
+          "nested_color_layers"
+        ]
+      },
+      "color": {
+        "label": "Color",
+        "description": "Selection by color, color frequency, or color agreement.",
+        "operations": [
+          "object_by_color",
+          "unique_color_marker",
+          "same_color_object_pair",
+          "dominant_color_objects",
+          "least_edge_color_objects",
+          "complete_shape_color_objects",
+          "colors",
+          "matching_template_objects",
+          "color_cluster",
+          "unique_color_object",
+          "unique_interior_color_object",
+          "monochrome_enclosed_regions",
+          "distinct_colors",
+          "marker_copy_source_cells",
+          "oriented_color_band_objects",
+          "repeated_multicolor_pattern_cells",
+          "repeated_multicolor_patterns",
+          "color_sequence_reference"
+        ]
+      },
+      "equivalence": {
+        "label": "Equivalence and matching",
+        "description": "Selection through equivalence classes or explicit matching, including same-color pairs and same-color template matching. Panel-content extraction alone does not test equivalence.",
+        "operations": [
+          "objects_by_equivalence_class",
+          "matching_template_objects",
+          "same_color_object_pair",
+          "objects_matching_shape",
+          "marker_copy_source_cells",
+          "repeated_multicolor_pattern_cells",
+          "repeated_multicolor_patterns"
+        ]
+      },
+      "centers_anchors": {
+        "label": "Center-relative selection",
+        "description": "Selection at or relative to a center, including off-center markers and nearest objects with an explicitly declared center anchor.",
+        "operations": [
+          "central_object",
+          "off_center_marker"
+        ]
+      },
+      "depth_occlusion": {
+        "label": "Depth and occlusion",
+        "description": "Explicit depth, visibility, occlusion, or reconstructed-layer selection.",
+        "operations": [
+          "shape_instance_by_depth",
+          "shape_instances_by_occlusion",
+          "top_shape_layer",
+          "complete_shape_color_objects",
+          "inferred_stripe_overlay_object",
+          "object_over_solid_rectangle"
+        ]
+      },
+      "composition": {
+        "label": "Set operations and fallback",
+        "description": "Structural selector operations: union, intersection, difference, exclusion, or fallback. Component criteria remain separately annotated.",
+        "operations": [
+          "union",
+          "intersection",
+          "difference",
+          "fallback",
+          "object_excluding_reference",
+          "on_selected_cells",
+          "on_inferred_pattern"
+        ],
+        "kind": "structural"
+      },
+      "collections": {
+        "label": "Object/cell extraction",
+        "description": "Structural collection, extraction, and pair-forming primitives, including extracting non-background content from panels. This tag does not assert a discriminative selection criterion.",
+        "operations": [
+          "all",
+          "all_objects",
+          "objects",
+          "line_objects",
+          "line_segments",
+          "shape_instances",
+          "region_cells",
+          "separator_delimited_panels",
+          "object_pair",
+          "same_color_object_pair",
+          "panel_deviation_objects",
+          "marker_decorated_panels",
+          "nested_color_layers",
+          "singleton_marker_cells",
+          "repetition_marker_run",
+          "color_sequence_reference"
+        ],
+        "kind": "structural"
+      },
+      "shape_geometry": {
+        "label": "Shape and geometry",
+        "description": "Selection by normalized shape, bounding dimensions, a color-sensitive raster key, or an explicit complete-shape catalog. Color and completeness remain separate overlapping tags.",
+        "operations": [
+          "complete_shape_color_objects",
+          "objects_matching_shape",
+          "objects_by_aspect",
+          "inferred_equal_square_objects",
+          "inferred_parallel_bars",
+          "projected_line_cells",
+          "repeated_multicolor_pattern_cells",
+          "repeated_multicolor_patterns",
+          "object_boundary_sides"
+        ]
+      },
+      "fill_state": {
+        "label": "Filled/hollow state",
+        "description": "Selection by whether an object has an empty interior, including explicitly hollow-object selectors. Does not imply a filling action.",
+        "operations": [
+          "objects_by_fill_state",
+          "hollow_objects"
+        ]
+      },
+      "completion_reconstruction": {
+        "label": "Completion and reconstruction",
+        "description": "Selection by completeness or inferred geometry, including present, missing, required, interior, and full-object parts. This does not imply that the action fills missing cells.",
+        "operations": [
+          "completion_region_cells",
+          "inferred_footprint_cells",
+          "inferred_pattern_cells",
+          "complete_shape_color_objects",
+          "on_inferred_pattern",
+          "inferred_equal_square_objects",
+          "inferred_parallel_bars",
+          "translated_pattern_source_cells",
+          "translated_pattern_target_cells"
+        ]
+      },
+      "count_measurement": {
+        "label": "Semantic count extraction",
+        "description": "Structural conversion to a count of semantic patch groups, row levels, boundary sides, enclosed cells, or distinct colors. This is a measurement primitive, not a criterion for choosing among objects. Other declared criteria retain their own tags.",
+        "operations": [
+          "cell_patch_group_count",
+          "row_level_count",
+          "object_boundary_sides",
+          "container_region_cells",
+          "distinct_colors"
+        ],
+        "kind": "structural"
+      }
+    },
+    "action": {
+      "recolor": {
+        "label": "Non-patterned recoloring",
+        "description": "Give existing whole objects, object groups, or reconstructed layers replacement colors while preserving their occupied geometry and positions. Patterned edits, localized cell coloring, completion, and erasure are separate.",
+        "operations": [
+          "recolor",
+          "recolor_group",
+          "recolor_shape_layers",
+          "recolor_non_background_from_selection",
+          "recolor_group_by_orientation",
+          "swap_shape_layer_colors"
+        ]
+      },
+      "pattern_recolor": {
+        "label": "Patterned recoloring",
+        "description": "Apply alternating colors to existing whole objects or reconstructed layers without filling missing cells or changing their occupied geometry. Does not imply non-patterned recoloring.",
+        "operations": [
+          "recolor_object_pattern",
+          "recolor_object_group_pattern",
+          "recolor_shape_layers_pattern"
+        ]
+      },
+      "translation_alignment": {
+        "label": "Translation and alignment",
+        "description": "Moving selected content by fixed displacements or to scene-dependent reference positions, centers, and midlines. Includes relocating marker color to line centers by redrawing. Exchanging layer positions belongs to reordering; exact operations and parameters retain implementation details.",
+        "operations": [
+          "translate_object_group",
+          "translate_shape_layers",
+          "translate_to",
+          "translate_each_to_reference",
+          "move_to_anchor",
+          "move_to_parallel_midline",
+          "center_markers_on_lines",
+          "translate_each_to",
+          "translate_each_until_blocked"
+        ]
+      },
+      "removal": {
+        "label": "Removal",
+        "description": "Remove selected objects, cells, or layers, including explicit background-color paint. Clearing interiors while preserving boundaries is hollowing out; erosion and corner removal remain separate. Erasing markers as part of relocating them is represented by the overall relocation action.",
+        "operations": [
+          "remove_group",
+          "remove_selected",
+          "remove_shape_layers",
+          "remove_occluded_shape_layers",
+          "remove_pair_member"
+        ]
+      },
+      "isolation": {
+        "label": "Isolation",
+        "description": "Keeping selected content or clipping it to a specified region. Also includes source-color-preserving selections placed at their original coordinates on a blank canvas.",
+        "operations": [
+          "isolate_group_same_canvas",
+          "isolate_same_canvas",
+          "isolate_cells_same_canvas",
+          "isolate_pair_member_same_canvas",
+          "clip_to_region"
+        ]
+      },
+      "mark_center": {
+        "label": "Mark center",
+        "description": "Mark an object, selection or grid center, or a midpoint, using a point, cross or perpendicular center stroke. Includes one center cell per selected object or reconstructed layer. Relocating existing markers to line centers belongs to translation and alignment.",
+        "operations": [
+          "mark_anchor",
+          "mark_cross",
+          "fill_center",
+          "fill_each_center"
+        ]
+      },
+      "color_grid_edge": {
+        "label": "Color grid edge",
+        "description": "Color an outer row or column of the canvas with a solid or dashed stripe. Edge choice, color, thickness and dash parameters remain explicit.",
+        "operations": [
+          "mark_grid_edge"
+        ]
+      },
+      "erosion": {
+        "label": "Erosion",
+        "description": "Removing a boundary layer from objects or reconstructed layers.",
+        "operations": [
+          "erode_object",
+          "erode_object_group",
+          "erode_shape_layers"
+        ]
+      },
+      "growth": {
+        "label": "Outward growth",
+        "description": "Expanding objects or reconstructed layers outward.",
+        "operations": [
+          "grow_object_outward",
+          "grow_object_group_outward",
+          "grow_shape_layers_outward"
+        ]
+      },
+      "corner_removal": {
+        "label": "Bounding-box corner removal",
+        "description": "Removing bounding-box corners while retaining target cardinality and layer semantics.",
+        "operations": [
+          "remove_object_bbox_corners",
+          "remove_object_group_bbox_corners",
+          "remove_shape_layer_bbox_corners"
+        ]
+      },
+      "fill_toggle": {
+        "label": "Switch filled \u2194 hollow",
+        "description": "Bidirectional fill-state inversion: fill hollow or incomplete objects and hollow out filled objects, depending on the input. Includes equivalent canvas compositions and declared alternatives. Replaces one-direction filling/hollowing tags for these tasks; pattern details remain explicit.",
+        "operations": [
+          "toggle_object_fill",
+          "toggle_object_group_fill",
+          "toggle_shape_layer_fill"
+        ]
+      },
+      "scaling": {
+        "label": "Scaling",
+        "description": "Scaling selected objects or layers about a center.",
+        "operations": [
+          "scale_object_about_center",
+          "scale_shape_layers_about_center"
+        ]
+      },
+      "reordering": {
+        "label": "Reordering and swapping",
+        "description": "Reordering object sequences, depth stacks, or spatial positions. Swapping colors alone is recoloring, not reordering.",
+        "operations": [
+          "permute_object_sequence",
+          "reorder_shape_layers",
+          "swap_shape_layer_positions",
+          "reorder_objects"
+        ]
+      },
+      "conditional": {
+        "label": "Conditional execution",
+        "description": "Structural conditional execution, excluded from action-family comparisons. Branch paths retain declared alternatives and their possible actions without asserting that both branches execute.",
+        "operations": [
+          "conditional"
+        ],
+        "kind": "structural"
+      },
+      "intersection_inversion": {
+        "label": "Intersection inversion",
+        "description": "Inverting shape-layer intersection cells; kept separate from ordinary recoloring.",
+        "operations": [
+          "invert_shape_layer_intersections"
+        ]
+      },
+      "identity": {
+        "label": "Identity",
+        "description": "An explicit no-change action, including conditional branches.",
+        "operations": [
+          "identity"
+        ]
+      },
+      "extract_place": {
+        "label": "Extract and place",
+        "description": "Source-color-preserving selected content placed at a declared position on a blank canvas, or selected object patches packed onto a blank canvas. Content may include inferred patches; this does not imply literal copying from observed input pixels.",
+        "operations": [
+          "pack_object_patches"
+        ]
+      },
+      "selection_overlay": {
+        "label": "Selection overlay",
+        "description": "Source-color-preserving selected or inferred content overlaid on the input at its original coordinates. Does not imply that the selection contains only observed input pixels.",
+        "operations": []
+      },
+      "empty_output": {
+        "label": "Empty output",
+        "description": "An explicitly allowed blank canvas with no placements, including declared conditional branches.",
+        "operations": []
+      },
+      "filling": {
+        "label": "Non-patterned filling",
+        "description": "Complete missing cells or fill an incomplete interior in place using solid or inferred non-patterned colors. Excludes isolated completion patches and bidirectional fill-state inversion.",
+        "operations": []
+      },
+      "pattern_filling": {
+        "label": "Patterned filling",
+        "description": "Complete missing cells or an incomplete interior in place using an alternating renderer or completion model. Excludes isolated completion patches and bidirectional fill-state inversion.",
+        "operations": []
+      },
+      "cell_coloring": {
+        "label": "Object part coloring",
+        "description": "Color selected existing cells, object parts, endpoints, or edges rather than recoloring whole objects. Original pattern and palette parameters remain available.",
+        "operations": [
+          "recolor_cells",
+          "recolor_cells_pattern"
+        ]
+      },
+      "region_coloring": {
+        "label": "Region coloring",
+        "description": "Color a spatial area or ray that may include background cells, without claiming an object recolor or missing-content completion. Original pattern parameters remain available.",
+        "operations": []
+      },
+      "hollowing": {
+        "label": "Hollowing out",
+        "description": "Clear an object or container interior while preserving its boundary, including partially filled interiors and reconstructed layers. Whole-object deletion remains removal. Bidirectional tasks use Switch filled \u2194 hollow instead.",
+        "operations": []
+      },
+      "copying": {
+        "label": "Copying and repetition",
+        "description": "Place source-color-preserving selected content at explicit destinations on the input canvas, including repeated placement. The composition does not explicitly clear source objects. Selections may contain inferred content, and overlap policies do not guarantee a distinct additional instance.",
+        "operations": []
+      },
+      "counting": {
+        "label": "Count rendering",
+        "description": "Render the numeric count of a selected collection or semantic measurement using the declared renderer. This does not treat the renderer as a selector or assume a particular counted entity.",
+        "operations": [
+          "count"
+        ]
+      },
+      "line_drawing": {
+        "label": "Line and ray drawing",
+        "description": "Draw one or more lines or rays, including independent lines per selected object. Direction, start, stop, stroke, and collision settings remain explicit; a grid-boundary endpoint is not assumed.",
+        "operations": [
+          "draw_line",
+          "draw_lines",
+          "draw_line_each"
+        ]
+      },
+      "sequence_rendering": {
+        "label": "Sequence rendering",
+        "description": "Render one selected-object color per sequence cell in declared positional or semantic order. This does not imply moving or reordering the original objects.",
+        "operations": [
+          "render_object_sequence"
+        ]
+      },
+      "clean_up": {
+        "label": "CleanUp",
+        "description": "Remove noise or repair corrupted content. The task-level label follows the declared action concept, independently of canvas construction, rendering, or placement details.",
+        "operations": []
+      },
+      "complete_shape": {
+        "label": "CompleteShape",
+        "description": "Complete or reconstruct a shape, including outputs containing a full reconstruction or only the missing content. The task-level label follows the declared action concept, independently of canvas construction, rendering, or placement details.",
+        "operations": []
+      },
+      "copy": {
+        "label": "Copy",
+        "description": "Copy or repeat selected content. The task-level label follows the declared action concept, independently of canvas construction, rendering, or placement details.",
+        "operations": []
+      },
+      "count": {
+        "label": "Count",
+        "description": "Count selected entities or a semantic quantity and express the result. The task-level label follows the declared action concept, independently of canvas construction, rendering, or placement details.",
+        "operations": []
+      },
+      "extend_to_boundary": {
+        "label": "ExtendToBoundary",
+        "description": "Extend selected content to a boundary. The task-level label follows the declared action concept, independently of canvas construction, rendering, or placement details.",
+        "operations": []
+      },
+      "extract_objects": {
+        "label": "ExtractObjects",
+        "description": "Extract selected objects or content. The task-level label follows the declared action concept, independently of canvas construction, rendering, or placement details.",
+        "operations": []
+      },
+      "move_to_boundary": {
+        "label": "MoveToBoundary",
+        "description": "Move selected content to a boundary. The task-level label follows the declared action concept, independently of canvas construction, rendering, or placement details.",
+        "operations": []
+      },
+      "order": {
+        "label": "Order",
+        "description": "Arrange or encode selected entities in an order. The task-level label follows the declared action concept, independently of canvas construction, rendering, or placement details.",
+        "operations": []
+      }
+    }
+  },
+  "helper_operations": [
+    "selector_color",
+    "literal_color",
+    "source_color",
+    "alternating",
+    "solid",
+    "dashed",
+    "bounding_box",
+    "reflection_closure",
+    "model_correspondence",
+    "enclosed_region",
+    "aspect_ratio_color",
+    "striped_rectangle_overlay",
+    "object_center",
+    "selection_bbox_center",
+    "midpoint_between_objects",
+    "grid_center",
+    "align_to_reference",
+    "align_to_grid_center",
+    "selection_grid_corner",
+    "selection_min_col",
+    "selection_min_row",
+    "blank_canvas",
+    "input_canvas",
+    "input_height",
+    "input_width",
+    "grid_edge_by_selection_orientation",
+    "grid_edge_by_selection_color_band_orientation",
+    "grid_edge_by_selection_extent_orientation",
+    "grid_edge_by_striped_rectangle_overlay_orientation",
+    "object_pair_equivalent",
+    "object_line_direction",
+    "object_shape",
+    "object_color_signature",
+    "object_color",
+    "object_dimensions",
+    "object_raster",
+    "shape_orientation",
+    "cell_count",
+    "barred_rectangle",
+    "sort",
+    "reverse",
+    "pack_along_axis",
+    "place_selection",
+    "preserve",
+    "add",
+    "adjacent_to_nearest_object",
+    "adjacent_to_reference",
+    "aspect_axis",
+    "at_touching_selector_footprint",
+    "before_non_background",
+    "before_selector",
+    "color_map",
+    "contact_reference_along_selection_axis",
+    "diagonal_shapes",
+    "directional_gap_closure",
+    "enclosing_boundary",
+    "equal_square_objects",
+    "filled_triangles",
+    "foreground_color_consensus",
+    "gapped_aligned_objects",
+    "grid_aspect_direction",
+    "grid_boundary",
+    "grid_edge_away_from_object_mass",
+    "grid_edge_by_common_object_orientation",
+    "grid_edge_opposite_nearest_on_reference_axis",
+    "grid_edges_away_from_group_center",
+    "hollow_rectangles",
+    "hollow_squares",
+    "intersecting_edge_lines",
+    "line_consensus",
+    "line_span",
+    "matching_markers",
+    "matching_subset",
+    "mul",
+    "object_area",
+    "object_bbox_area",
+    "object_color_rank",
+    "object_distinct_color_count",
+    "object_fill_cell_count",
+    "object_fill_height",
+    "object_group_axis",
+    "object_height",
+    "object_marker_height",
+    "object_non_dominant_color_count",
+    "object_non_dominant_component_count",
+    "object_outline_side_count",
+    "object_width",
+    "opposite_grid_boundary_on_reference_axis",
+    "orient_line",
+    "original_slots",
+    "overlay_bar",
+    "overlay_sequence",
+    "overlay_stripes",
+    "pack_from_corner",
+    "periodic_color_field",
+    "place_each_object_at_matching_centers",
+    "positive_selection_axis",
+    "remove_marker",
+    "repeat_selection",
+    "repeated_objects",
+    "repeated_outline",
+    "selection_bilateral_offset",
+    "selection_cardinal_offset",
+    "selection_center",
+    "selection_edge_cells",
+    "selection_edge_midpoint",
+    "selection_endpoint_marker_cell",
+    "selection_grid_corner_pair",
+    "selection_grid_corner_quad",
+    "selection_grid_corner_triple",
+    "selection_height",
+    "selection_offset",
+    "selection_profile_edge_cells",
+    "selection_rectangle_corner",
+    "selection_width",
+    "solid_rectangle",
+    "solid_rectangles",
+    "stripe_background",
+    "template_projection",
+    "toward_endpoint_marker",
+    "toward_nearest_aligned_non_background",
+    "toward_nearest_non_background",
+    "toward_reference",
+    "triangular_wave"
+  ],
+  "parameter_keys": [
+    "orientation",
+    "orientations",
+    "visible_orientation",
+    "object_orientation",
+    "candidate_orientation",
+    "reference_orientation",
+    "appendage_orientation_relation",
+    "stripe_orientation",
+    "bar_orientation",
+    "allowed_orientations",
+    "required_orientations",
+    "allowed_aspects",
+    "required_aspects",
+    "axis",
+    "axis_alignment",
+    "cross_alignment",
+    "direction",
+    "diagonal_direction",
+    "relation",
+    "lane_relation",
+    "placement_relation_modes",
+    "object_pair_relation_modes",
+    "region",
+    "part",
+    "state",
+    "fill_states",
+    "center_fill_states",
+    "incomplete_states",
+    "grouping",
+    "mode",
+    "center_mode",
+    "color_mode",
+    "color_modes",
+    "object_color_mode",
+    "background_inference",
+    "background_color",
+    "color",
+    "colors",
+    "horizontal_color",
+    "vertical_color",
+    "geometry",
+    "shape_catalog",
+    "occluded_shape_catalog",
+    "top_shape_catalog",
+    "shape_styles",
+    "object_shape_styles",
+    "object_shape",
+    "shape_kind",
+    "lower_shape_styles",
+    "upper_shape_styles",
+    "foreground_shape_styles",
+    "reference_styles",
+    "shape_area_range",
+    "larger_shape_styles",
+    "smaller_shape_styles",
+    "filled_shape_styles",
+    "unfilled_shape_styles",
+    "outline_styles",
+    "equivalence_key",
+    "contained_equivalence_key",
+    "embedded_equivalence_key",
+    "object_pair_equivalence_key",
+    "depth",
+    "depth_granularity",
+    "inference_policy",
+    "extent_inference_policy",
+    "occlusion_regime",
+    "overlap_topology",
+    "overlap",
+    "region_count_range",
+    "size_relation",
+    "offset",
+    "factor",
+    "corner",
+    "include_background",
+    "overlap_policy",
+    "boundary_policy",
+    "class_size_range",
+    "include_reference",
+    "exclude_reference",
+    "comparison",
+    "through",
+    "member",
+    "index",
+    "condition"
+  ],
+  "expression_parameters": [
+    "model",
+    "key",
+    "pattern",
+    "anchor",
+    "canvas",
+    "render",
+    "location",
+    "target_position",
+    "order",
+    "permutation",
+    "placement"
+  ],
+  "parameter_mode": "all_literals",
+  "index_all_operations": true,
+  "parameter_notes": "Every declared scalar and flat literal list is exposed with its full JSON path. String lists provide membership tags except explicitly ordered_parameter_keys, which retain the complete sequence. Numeric/mixed lists and empty lists remain complete JSON values, preserving ordered offsets and range endpoints. Exact nested operators are searchable separately from roots; rendering, model, condition, and anchor expressions remain identifiable without inventing action semantics.",
+  "parameter_families": [
+    {
+      "role": "selector",
+      "operations": [
+        "objects_by_equivalence_class"
+      ],
+      "parameter": "key.op",
+      "values": [
+        "object_line_direction"
+      ],
+      "family": "orientation",
+      "description": "The equivalence key measures line direction in _object_equivalence_key; equivalence and orientation both apply."
+    },
+    {
+      "role": "selector",
+      "operations": [
+        "objects_by_equivalence_class"
+      ],
+      "parameter": "key.op",
+      "values": [
+        "object_color",
+        "object_color_signature",
+        "object_raster"
+      ],
+      "family": "color",
+      "description": "Color and color-signature keys compare colors; the raster key preserves colors as well as geometry."
+    },
+    {
+      "role": "selector",
+      "operations": [
+        "objects_by_equivalence_class"
+      ],
+      "parameter": "key.op",
+      "values": [
+        "object_shape",
+        "object_dimensions",
+        "object_raster"
+      ],
+      "family": "shape_geometry",
+      "description": "The DSL key preserves normalized shape, bounding dimensions, or the full masked raster, respectively."
+    },
+    {
+      "role": "selector",
+      "operations": [
+        "objects_by_equivalence_class"
+      ],
+      "parameter": "key.op",
+      "values": [
+        "object_dimensions"
+      ],
+      "family": "size",
+      "description": "The declared equivalence key compares bounding-box height and width, without selecting an extremum."
+    },
+    {
+      "role": "selector",
+      "operations": [
+        "nearest_object"
+      ],
+      "parameter": "anchor.op",
+      "values": [
+        "grid_center",
+        "object_center",
+        "selection_bbox_center",
+        "midpoint_between_objects"
+      ],
+      "family": "centers_anchors",
+      "description": "A center/midpoint is explicitly declared as the distance anchor; nearest_object alone does not imply centrality."
+    },
+    {
+      "role": "selector",
+      "operations": [
+        "shape_instances_by_occlusion",
+        "spanning_line"
+      ],
+      "parameter": "orientation",
+      "values": [
+        "horizontal",
+        "vertical"
+      ],
+      "family": "orientation",
+      "description": "An explicit orientation restriction is present on an otherwise more general selector."
+    },
+    {
+      "role": "selector",
+      "operations": [
+        "extreme_object_by_key"
+      ],
+      "parameter": "key.op",
+      "values": [
+        "object_area",
+        "object_bbox_area",
+        "object_width",
+        "object_height",
+        "object_fill_height",
+        "object_fill_cell_count",
+        "object_marker_height"
+      ],
+      "family": "size",
+      "description": "The explicit extremum key measures occupied area, bounding extent, or the extent of a filled or marked object part."
+    },
+    {
+      "role": "selector",
+      "operations": [
+        "extreme_object_by_key"
+      ],
+      "parameter": "key.op",
+      "values": [
+        "object_distinct_color_count",
+        "object_non_dominant_color_count"
+      ],
+      "family": "color",
+      "description": "The explicit extremum key compares palette size or non-dominant-color cell counts."
+    },
+    {
+      "role": "selector",
+      "operations": [
+        "extreme_object_by_key"
+      ],
+      "parameter": "key.op",
+      "values": [
+        "object_outline_side_count"
+      ],
+      "family": "shape_geometry",
+      "description": "The explicit extremum key compares the number of straight outline sides."
+    }
+  ],
+  "ordered_parameter_keys": [
+    "value_order"
+  ],
+  "composition_rules": {
+    "isolate_in_place": {
+      "families": [
+        "isolation"
+      ],
+      "description": "All placements preserve source colors, use selection_min_row/selection_min_col without overriding location, target_position, or anchor, and render on a blank canvas."
+    },
+    "extract_to_corner": {
+      "families": [
+        "extract_place"
+      ],
+      "description": "All placements preserve source colors and use selection_grid_corner on a blank canvas without an overriding target_position."
+    },
+    "overlay_in_place": {
+      "families": [
+        "selection_overlay"
+      ],
+      "description": "All placements preserve source colors and use selection_min_row/selection_min_col without overriding location, target_position, or anchor, on an input canvas."
+    },
+    "empty_canvas": {
+      "families": [
+        "empty_output"
+      ],
+      "description": "A blank canvas has an explicit empty placements list and allow_empty=true; describes a declared branch, not observed execution."
+    },
+    "unchanged_canvas": {
+      "families": [
+        "identity"
+      ],
+      "description": "An input canvas has an explicit empty placements list and allow_empty=true."
+    },
+    "copy_to_input": {
+      "families": [
+        "copying"
+      ],
+      "description": "Preserved selected content is placed at explicit destinations on an input canvas; original content is not explicitly cleared. Includes reviewed repetitions and matching-center copies."
+    },
+    "extract_to_position": {
+      "families": [
+        "extract_place"
+      ],
+      "description": "Preserved selected content is placed at an explicit target position on a blank canvas. This retains target semantics without claiming literal duplication of observed input pixels."
+    }
+  },
+  "color_edit_rules": {
+    "version": 1,
+    "description": "Inspect action, effective target selector, palette, canvas, and placement jointly. Rules describe declared edits, not which conditional branch ran. Exact documented DSL defaults are used; unresolved cases remain flagged. A task can declare multiple edits, but patterned edits do not automatically imply non-patterned edits.",
+    "reference": [
+      "conceptarc_gen/dsl_actions.py:recolor_object",
+      "conceptarc_gen/dsl_actions.py:_render_placement_cell",
+      "conceptarc_gen/dsl_actions.py:_placement_top_lefts",
+      "conceptarc_gen/dsl_selectors.py:completion_region_cells",
+      "conceptarc_gen/dsl_selectors.py:oriented_color_band_cells"
+    ],
+    "object_selectors": [
+      "all_objects",
+      "objects_by_orientation",
+      "central_object",
+      "nearest_object",
+      "object_by_color",
+      "objects_by_color",
+      "objects_relative_to_reference",
+      "shape_instances",
+      "shape_instances_by_occlusion",
+      "top_shape_layer"
+    ],
+    "cases": {
+      "object_uniform": {
+        "family": "recolor",
+        "description": "Whole-object replacement with a non-background color; one uniform color per object, including input-dependent color selection or color exchange."
+      },
+      "object_pattern": {
+        "family": "pattern_recolor",
+        "description": "Alternating colors on an existing whole-object footprint, without filling its missing cells."
+      },
+      "fill_uniform": {
+        "family": "filling",
+        "description": "Missing or incomplete-interior cells receive solid or inferred colors under a non-patterned completion rule."
+      },
+      "fill_pattern": {
+        "family": "pattern_filling",
+        "description": "Missing/interior cells receive alternating rendering or follow an explicitly alternating completion model."
+      },
+      "localized": {
+        "family": "cell_coloring",
+        "description": "Selected existing cells or object parts are colored; no whole-object or completion interpretation is inferred."
+      },
+      "region": {
+        "family": "region_coloring",
+        "description": "A spatial region or ray may include background cells and is painted without an object-completion interpretation."
+      },
+      "erase": {
+        "family": "removal",
+        "description": "Explicit background-color paint removes selected content from the input canvas; painting background on a blank canvas is not erasure."
+      },
+      "isolate": {
+        "family": "isolation",
+        "description": "Nonempty selected content is rendered at its original coordinates on a blank canvas, possibly with another declared color edit."
+      }
+    }
+  },
+  "fill_state_rules": {
+    "version": 1,
+    "description": "Resolve toggle direction from exact selector/layout constraints. Emptying completion interiors while retaining boundaries is hollowing; parallel-strip required/present selections include their boundaries and remain removal. Missing patches rendered alone are isolation. Parent tasks with both filling and hollowing use only the bidirectional family among these direction labels. Unknown toggle contexts remain flagged, never assumed bidirectional.",
+    "reference": [
+      "conceptarc_gen/dsl_actions.py:toggle_object_fill_state",
+      "conceptarc_gen/dsl_actions.py:toggle_shape_layer_fill",
+      "conceptarc_gen/dsl_selectors.py:completion_region_cells",
+      "conceptarc_gen/dsl_selectors.py:_completion_region_geometry",
+      "conceptarc_gen/dsl_layouts.py:_inside_outside_action_shapes"
+    ],
+    "families": {
+      "fill": "filling",
+      "pattern_fill": "pattern_filling",
+      "hollow": "hollowing",
+      "switch": "fill_toggle",
+      "isolate": "isolation"
+    },
+    "shape_states": {
+      "filled_rectangle": "filled",
+      "hollow_rectangle": "unfilled",
+      "hollow_shapes": "unfilled",
+      "geometry_safe_rectangles": "filled"
+    },
+    "layout_shape_parameters": {
+      "scattered_objects": [
+        "object_shape_styles",
+        "shape_styles"
+      ],
+      "gapped_aligned_objects": [
+        "shape_styles",
+        "larger_shape_styles",
+        "smaller_shape_styles"
+      ],
+      "concave_region_with_inside_outside_objects": [
+        "object_shape"
+      ],
+      "hollow_container_with_inside_outside_objects": [
+        "object_shape"
+      ],
+      "irregular_outline_with_inside_outside_objects": [
+        "object_shape"
+      ],
+      "parallel_lines_with_inside_outside_objects": [
+        "object_shape"
+      ],
+      "corner_stacked_objects": [
+        "shape_styles"
+      ]
+    }
+  },
+  "layout_rules": {
+    "version": 1,
+    "description": "Refine input-layout tags using exact DSL operators and parameters, independently of actions or expected outputs. Preserve all raw declarations and record source paths. Layered-pair placement_relation_modes override the generic overlap parameter; documented missing overlap/mode defaults allow optional overlap and are marked as defaulted. Mixed-fill evidence follows the active generator branch and explicit count quotas; unknown shape names are never guessed. Legacy snapshots without this profile retain their original labels.",
+    "reference": [
+      "conceptarc_gen/dsl_layouts.py:_generate_layered_objects_input",
+      "conceptarc_gen/dsl_layouts.py:_generate_layered_object_pair_input",
+      "conceptarc_gen/dsl_layouts.py:_generate_gapped_aligned_objects_scene",
+      "conceptarc_gen/dsl_layouts.py:_generate_shape_with_region_cells_scene",
+      "conceptarc_gen/dsl_layouts.py:_generate_solid_rectangle_with_scattered_cells_scene"
+    ],
+    "families": {
+      "overlap": "overlap_occlusion",
+      "containers": "containers_boundaries",
+      "markers": "references_markers",
+      "fill": "fill_completion",
+      "pair": "paired_objects",
+      "noise": "background_noise",
+      "corruption": "corrupted_surfaces",
+      "lines": "lines_paths"
+    },
+    "shape_states": {
+      "filled_rectangle": "filled",
+      "filled_irregular": "filled",
+      "filled_diamond": "filled",
+      "hollow_rectangle": "unfilled",
+      "hollow_irregular": "unfilled",
+      "hollow_diamond": "unfilled",
+      "hollow_square": "unfilled"
+    }
+  },
+  "selector_rules": {
+    "version": 1,
+    "color_family": "color",
+    "color_filter_operations": [
+      "region_cells"
+    ],
+    "description": "Tag explicit region-cell color filters using the DSL color_selector-over-color precedence, plus exclude_color. Preserve the effective field, raw value, and path; do not infer colors from operation names.",
+    "reference": "conceptarc_gen/dsl_selectors.py:region_cells"
+  },
+  "concept_action_families": {
+    "CleanUp": "clean_up",
+    "CompleteShape": "complete_shape",
+    "Copy": "copy",
+    "Count": "count",
+    "ExtendToBoundary": "extend_to_boundary",
+    "ExtractObjects": "extract_objects",
+    "MoveToBoundary": "move_to_boundary",
+    "Order": "order"
+  },
+  "secondary_action_families": {
+    "center_markers_on_lines": [
+      "mark_center",
+      "removal"
+    ],
+    "swap_shape_layer_positions": [
+      "translation_alignment"
+    ]
+  }
+}

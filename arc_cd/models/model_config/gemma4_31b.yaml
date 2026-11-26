@@ -1,0 +1,35 @@
+# https://huggingface.co/google/gemma-4-31B-it#best-practices
+model:
+  model: "google/gemma-4-31B-it"
+  dtype: bfloat16
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.90
+  max_model_len: 131072
+
+chat:
+  add_generation_prompt: true
+  chat_template_kwargs:
+    enable_thinking: true
+
+generation:
+  max_tokens: 65536
+  thinking_token_budget: 49152
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 64
+  min_p: 0.0
+  presence_penalty: 0.0
+  repetition_penalty: 1.0
+  # Match the checkpoint's generation_config.json.
+  stop_token_ids: [1, 106, 50]
+  # Gemma's reasoning delimiters are special tokens needed by evaluation.
+  skip_special_tokens: false
+
+reasoning:
+  enabled: true
+  reasoning_parser: gemma4
+  reasoning_start_str: "<|channel>thought\n"
+  reasoning_end_marker: "<channel|>"
+  reasoning_end_str: "<channel|>"
+  # Preserve the native template; the model emits the thought-channel prefix.
+  ensure_reasoning_start_in_prompt: false

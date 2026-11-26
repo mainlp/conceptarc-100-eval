@@ -1,0 +1,36 @@
+# https://huggingface.co/microsoft/Phi-4-reasoning-plus
+model:
+  model: "microsoft/Phi-4-reasoning-plus"
+  dtype: bfloat16
+  trust_remote_code: false
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.90
+  max_model_len: 32768
+
+chat:
+  add_generation_prompt: true
+  chat_template_kwargs: {}
+  # The native template supplies its own system prompt and ignores ours.
+  prepend_system_to_user: true
+
+generation:
+  # Reserve 14,336 prompt tokens and 3,072 tokens for the closing marker + answer.
+  max_tokens: 18432
+  thinking_token_budget: 15360
+  temperature: 0.8
+  top_p: 0.95
+  top_k: 50
+  min_p: 0.0
+  presence_penalty: 0.0
+  repetition_penalty: 1.0
+  stop_token_ids: [100265]  # <|im_end|>, from generation_config.json.
+  skip_special_tokens: false
+
+reasoning:
+  enabled: true
+  reasoning_parser: deepseek_r1
+  reasoning_start_str: "<think>"
+  reasoning_end_marker: "</think>"
+  # Match Qwen3's transition; Phi encodes the whole string as token 100351.
+  reasoning_end_str: "\n</think>\n\n"
+  ensure_reasoning_start_in_prompt: true

@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "conceptarc-100-eval"
+version = "0.1.0"
+description = "Model evaluation and task representation analysis for ConceptARC-100."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "CC-BY-SA-4.0"
+license-files = ["LICENSE"]
+dependencies = [
+    "datasets>=4",
+    "matplotlib>=3.10",
+    "numba>=0.65",
+    "numpy>=2.2",
+    "pillow>=10",
+    "pyyaml>=6",
+    "scikit-learn>=1.9",
+    "scipy>=1.15",
+    "threadpoolctl>=3",
+    "tqdm>=4.67",
+    "umap-learn==0.5.12",
+]
+
+[project.optional-dependencies]
+inference = [
+    "accelerate>=1.13",
+    "transformers==5.10.2",
+    "vllm==0.22.1",
+]
+test = ["pytest>=9"]
+
+[tool.setuptools.packages.find]
+include = ["arc_cd*", "scripts*", "prompts.concept_arc"]
+
+[tool.setuptools.package-data]
+"prompts.concept_arc" = ["system.txt", "user.txt"]
+"arc_cd.models" = ["model_config/*.yaml"]
+"arc_cd.repr_analysis" = ["spec_taxonomy.json", "base_task_centroid_embeddings.npz"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: requires a locally cached model or tokenizer"]

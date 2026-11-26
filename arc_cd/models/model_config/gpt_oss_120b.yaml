@@ -1,0 +1,31 @@
+model:
+  model: "openai/gpt-oss-120b"
+  dtype: auto
+  gpu_memory_utilization: 0.90
+
+chat:
+  renderer: harmony
+  chat_template_kwargs: {}
+
+generation:
+  max_tokens: 65536
+  thinking_token_budget: 49152
+  temperature: 1.0
+  top_p: 1.0
+  top_k: 0
+  min_p: 0.0
+  presence_penalty: 0.0
+  repetition_penalty: 1.0
+  stop_token_ids:
+    - 200002  # <|return|>
+    - 200012  # <|call|>
+  skip_special_tokens: false
+
+reasoning:
+  enabled: true
+  reasoning_parser: openai_gptoss
+  reasoning_start_str: "<|channel|>analysis<|message|>"
+  reasoning_end_marker: "<|channel|>final<|message|>"
+  reasoning_end_str: "<|end|><|start|>assistant<|channel|>final<|message|>"
+  ensure_reasoning_start_in_prompt: false
+  reasoning_effort: high

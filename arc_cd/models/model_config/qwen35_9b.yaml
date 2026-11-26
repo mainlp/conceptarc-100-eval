@@ -1,0 +1,27 @@
+model:
+  model: "Qwen/Qwen3.5-9B"
+  dtype: auto
+  gpu_memory_utilization: 0.90
+
+chat:
+  add_generation_prompt: true
+  chat_template_kwargs:
+    enable_thinking: true
+
+generation:
+  max_tokens: 65536
+  thinking_token_budget: 49152
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  presence_penalty: 1.5
+  repetition_penalty: 1.0
+
+reasoning:
+  enabled: true
+  reasoning_parser: qwen3
+  reasoning_start_str: "<think>"
+  reasoning_end_marker: "</think>"
+  reasoning_end_str: "\n</think>\n\n"
+  ensure_reasoning_start_in_prompt: true
