@@ -304,7 +304,7 @@ For the remaining models in Figures 6–9, repeat steps 5–6 with `MODEL=gemma4
 
 Use the Qwen3.5-27B paths from steps 5–6. Consider a reference task that removes corners. Compare it with a second corner-removal task and a third task with a different action. Layout and visual matching constrain the **second and third tasks**. The reference can look different from both. Freeze these comparisons once, then score S3 at every layer under the original condition and eight controls.
 
-**How to reproduce the visual cutoffs.** Section 4.2 describes percentiles over eligible pair distances. The archived experiment calibrates each visual profile using one distance per positive task and action family with at least ten members, taken to its nearest eligible different-action task. It pools those distances, computes q25, q50, and q75, and retains **every eligible pair** strictly below each cutoff. The saved cutoffs are in `$MATCHES/matching_summary.json`. [See worked examples of visual matching](https://mainlp.github.io/conceptarc-100-project-page/index.html#visual-controls)
+**How to reproduce the visual cutoffs.** Section 4.2 describes percentiles over eligible pair distances. The experiment calibrates each visual profile using one distance per positive task and action family with at least ten members, taken to its nearest eligible different-action task. It pools those distances, computes q25, q50, and q75, and retains **every eligible pair** strictly below each cutoff. The saved cutoffs are in `$MATCHES/matching_summary.json`. [See worked examples of visual matching](https://mainlp.github.io/conceptarc-100-project-page/index.html#visual-controls)
 
 ```bash
 MATCHES="$RESULTS/action_matches"

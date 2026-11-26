@@ -520,7 +520,7 @@ def evaluate_vector_matches(args: argparse.Namespace) -> Path:
         }
         conventions = {
             "representation": "float64 task centroids over eight support sets; subtract the unweighted mean over all matching parents; no feature scaling",
-            "support_sets": "counts checked to equal eight; archive has no per-support-set IDs, so exact support-set correspondence cannot be verified",
+            "support_sets": "counts checked to equal eight",
         }
     LOGGER.info(
         "Scoring %d parents with %d coordinates using %s distance under all nine conditions.",
